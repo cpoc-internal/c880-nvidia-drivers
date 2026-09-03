@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Downloading required libraries..."
+
 sudo apt install -y linux-headers-$(uname -r)
 sudo apt install -y build-essential
 sudo apt update
@@ -14,13 +15,14 @@ sudo apt install -y linux-headers-$(uname -r) build-essential dkms ibverbs-utils
 sudo dkms autoinstall
 sudo depmod -a
 sudo dkms status
+
 sudo apt update
 sudo apt install -y nvidia-driver-580-server-open nvidia-dkms-580-server-open nvidia-fabricmanager-580 nvlsm
 sudo dkms autoinstall
 sudo dkms status
 nvidia-smi
-sudo modprobe -v ib_umad
-lsmod | grep ib_umad
+
+sudo modprobe ib_umad
 echo "ib_umad" | sudo tee /etc/modules-load.d/ib_umad.conf
 sudo apt-get update
 sudo apt-get install -y rdma-core ibverbs-utils
@@ -64,7 +66,10 @@ sudo apt install libnccl2=2.28.7-1+cuda13.0 libnccl-dev=2.28.7-1+cuda13.0 -y
 sudo apt install build-essential devscripts debhelper fakeroot -y
 sudo apt install openmpi-bin openmpi-common libopenmpi-dev -y
 sudo apt install mpich -y
-sudo modprobe nvidia-peermem
+sudo modprobe ib_core
+sudo modprobe nvidia
+sudo modprobe nvidia_uvm
+#sudo modprobe nvidia-peermem
 
 export CUDA_HOME=/usr/local/cuda
 export PATH=/usr/local/cuda/bin:$PATH
