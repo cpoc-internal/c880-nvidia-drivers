@@ -22,7 +22,7 @@ please use root to install all drivers, ndvidia, toolkit, cuda, doca, nccl, fabr
 Server 1
 ```
 
- chmod +x /root/c880-nvidia-drivers/netplan-config-1.sh
- sudo -u root /root/c880-nvidia-drivers/netplan-config-1.sh
+ chmod +x /root/c880-nvidia-drivers/netplan_1.sh
+ sudo -u root /root/c880-nvidia-drivers/netplan_1.sh
 ```
 
